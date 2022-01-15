@@ -1,7 +1,7 @@
 package game;
 
 public abstract class Player {
-	private String userId;
+	protected String userId;
 	
 	/**
 	 * Constructor that sets private attribute userId according to parameter
