@@ -3,6 +3,12 @@ package game;
 public class TakePinsGame {
 
 	public static void main(String[] args) {
+		
+		UserInterface.printMessage("hello");
+		UserInterface.askForInt("gimme an int");
+		
+		
+		
 		Board b = new Board();
 		b.setUp(10);
 		boolean playerTurn = true;
