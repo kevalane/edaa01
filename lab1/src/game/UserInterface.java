@@ -22,6 +22,17 @@ public class UserInterface {
 	 */
 	public static int askForInt(String msg) {
 		String input = JOptionPane.showInputDialog(msg);
-		return Integer.parseInt(input);
+		
+		// return -2 on cancel click
+		if (input == null) return -2;
+		
+		try {
+			int x = Integer.parseInt(input);
+			if (x <= 0) return -1;
+			return x;
+		} catch (Exception e) {
+			// return -1 if not int (parse unsuccessful)
+			return -1;
+		}
 	}
 }

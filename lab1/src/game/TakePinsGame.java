@@ -4,9 +4,6 @@ public class TakePinsGame {
 
 	public static void main(String[] args) {
 		
-		UserInterface.printMessage("hello");
-		UserInterface.askForInt("gimme an int");
-		
 		
 		
 		Board b = new Board();
