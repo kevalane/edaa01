@@ -9,7 +9,7 @@ public class TakePinsGame {
 		b.setUp(10);
 		boolean playerTurn = true;
 		Player p1 = new HumanPlayer("Kevin");
-		Player p2 = new ComputerPlayer("comp");
+		Player p2 = new ComputerPlayer2("comp");
 		
 		// While loop for game
 		while(b.getNoPins() > 0) {
