@@ -29,7 +29,7 @@ public class Scheduler {
 	/** Fördelar jobben i listan jobs på maskinerna. */
 	public void makeSchedule(List<Job> jobs) {
 		List<Job> tempJobList = new ArrayList<>(jobs);
-		tempJobList.sort(new DescTimeComp());
+		tempJobList.sort((j1, j2) -> j1.getTime() - j2.getTime());
 		for (Job j : tempJobList) {
 			Machine m = machineWithLeastToDo();	
 			m.assignJob(j);
