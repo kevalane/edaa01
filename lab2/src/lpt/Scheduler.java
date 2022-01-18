@@ -9,13 +9,15 @@ public class Scheduler {
 		i vektorn machines. */
 	
 	public Scheduler(Machine[] machineArray) {
-		Machine[] machines = machineArray;
+//		Machine[] machines = machineArray;
+		this.machines = machineArray;
 	}
 	
 	/* Returnerar den maskin som har minst att göra. */
 	private Machine machineWithLeastToDo() {
 		int min = Integer.MAX_VALUE;
 		int minPos = -1;
+
 		for (int i = 0; i < machines.length; i++) {
 			int totalTime = machines[i].getScheduledTime();
 			if (totalTime < min) {
