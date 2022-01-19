@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Holgersson {
 
@@ -14,10 +16,22 @@ public class Holgersson {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
+		long t0 = System.nanoTime();
+		
+		// General word counter
+		Scanner scan = new Scanner(new File("undantagsord.txt"));
+		
+		Set<String> stopwords = new HashSet<String>();
+		
+		while (scan.hasNext()) {
+			String word = scan.next().toLowerCase();
+			stopwords.add(word);
+		}
+		
+		TextProcessor r = new GeneralWordCounter(stopwords);
+		
 		// Using multiwordcounter
 		MultiWordCounter m = new MultiWordCounter(REGIONS);
-		
-		
 		
 		// Using SingleWordCounter
 		ArrayList<TextProcessor> pList = new ArrayList<>();
@@ -35,16 +49,21 @@ public class Holgersson {
 			for (TextProcessor t : pList) {
 				t.process(word);
 			}
+			r.process(word);
 			m.process(word);
 //			p.process(word);
 		}
 
 		s.close();
 		
+		r.report();
 		m.report();
 //		p.report();
 		for (TextProcessor t : pList) {
 			t.report();
 		}
+		
+		long t1 = System.nanoTime();
+		System.out.println("tid: " + (t1 - t0) / 1000000 + " ms");
 	}
 }

@@ -2,6 +2,7 @@ package textproc;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class MultiWordCounter implements TextProcessor {
 	
@@ -13,7 +14,7 @@ public class MultiWordCounter implements TextProcessor {
 	 * 		string vector of words we'll be looking for
 	 */
 	public MultiWordCounter(String[] words) {
-		m = new HashMap<String, Integer>();
+		m = new TreeMap<String, Integer>();
 		this.init(words);
 	}
 	
