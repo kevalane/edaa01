@@ -1,6 +1,7 @@
 package textproc;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -13,7 +14,16 @@ public class Holgersson {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		TextProcessor p = new SingleWordCounter("nils");
+		// Using multiwordcounter
+		MultiWordCounter m = new MultiWordCounter(REGIONS);
+		
+		
+		
+		// Using SingleWordCounter
+		ArrayList<TextProcessor> pList = new ArrayList<>();
+//		TextProcessor p = new SingleWordCounter("nils");
+		pList.add(new SingleWordCounter("nils"));
+		pList.add(new SingleWordCounter("norge"));
 
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
@@ -21,12 +31,20 @@ public class Holgersson {
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
-
-			p.process(word);
+			
+			for (TextProcessor t : pList) {
+				t.process(word);
+			}
+			m.process(word);
+//			p.process(word);
 		}
 
 		s.close();
-
-		p.report();
+		
+		m.report();
+//		p.report();
+		for (TextProcessor t : pList) {
+			t.report();
+		}
 	}
 }
