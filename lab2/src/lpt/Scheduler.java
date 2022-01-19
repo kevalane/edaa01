@@ -9,13 +9,15 @@ public class Scheduler {
 		i vektorn machines. */
 	
 	public Scheduler(Machine[] machineArray) {
-		Machine[] machines = machineArray;
+//		Machine[] machines = machineArray;
+		this.machines = machineArray;
 	}
 	
 	/* Returnerar den maskin som har minst att göra. */
 	private Machine machineWithLeastToDo() {
 		int min = Integer.MAX_VALUE;
 		int minPos = -1;
+
 		for (int i = 0; i < machines.length; i++) {
 			int totalTime = machines[i].getScheduledTime();
 			if (totalTime < min) {
@@ -29,7 +31,7 @@ public class Scheduler {
 	/** Fördelar jobben i listan jobs på maskinerna. */
 	public void makeSchedule(List<Job> jobs) {
 		List<Job> tempJobList = new ArrayList<>(jobs);
-		tempJobList.sort(new DescTimeComp());
+		tempJobList.sort((j1, j2) -> j2.getTime() - j1.getTime());
 		for (Job j : tempJobList) {
 			Machine m = machineWithLeastToDo();	
 			m.assignJob(j);
@@ -45,7 +47,7 @@ public class Scheduler {
 
 	/** Skriver ut maskinernas scheman. */
 	public void printSchedule() {
-		for (int i = 0; i <= machines.length; i++) {
+		for (int i = 0; i < machines.length; i++) {
 			System.out.println(machines[i]);
 		}
 	}
