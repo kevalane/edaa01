@@ -19,6 +19,33 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * 			to this queue, else false
 	 */
 	public boolean offer(E e) {
+		// empty
+		if (this.last == null) {
+			this.last = new QueueNode<E>(e);
+			return true;
+		}
+		// one element
+		if (this.last == this.last.next) {
+			QueueNode<E> temp = this.last;
+			QueueNode<E> insert = new QueueNode<E>(e);
+			temp.next = insert;
+			this.last = insert;
+			insert.next = temp;
+			return true;
+		}
+		
+		// multiple elements
+		QueueNode<E> temp = this.last.next;
+		while(temp != null) {
+			if (temp == this.last) {
+				QueueNode<E> insert = new QueueNode<E>(e);
+				insert.next = this.last.next;
+				temp.next = insert;
+				this.last = insert;
+				return true;
+			}
+			temp = temp.next;
+		}
 		return false;
 	}
 	
@@ -27,7 +54,15 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return the number of elements in this queue
 	 */
 	public int size() {		
-		return 0;
+		if (this.last == null) return 0;
+		if (this.last == this.last.next) return 1;
+		QueueNode<E> temp = this.last.next;
+		int i = 0;
+		do {
+			i++;
+			temp = temp.next;
+		} while(temp != this.last);
+		return i;
 	}
 	
 	/**	
