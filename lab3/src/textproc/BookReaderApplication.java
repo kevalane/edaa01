@@ -21,6 +21,7 @@ public class BookReaderApplication {
 		
 		GeneralWordCounter r = new GeneralWordCounter(stopwords);
 		
+		// let user select their own file
 		File f = BookReaderController.selectFile();
 		
 //		Scanner s = new Scanner(new File("nilsholg.txt"));
