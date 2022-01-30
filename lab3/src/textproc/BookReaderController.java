@@ -1,14 +1,18 @@
 package textproc;
 
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JScrollPane;
 import javax.swing.JFrame;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.io.File;
+
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -107,5 +111,21 @@ public class BookReaderController {
 		
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	/**
+	 * static method for the user to select a txt file of their choice
+	 * @return
+	 * 		the selected file
+	 */
+	public static File selectFile() {
+		JFileChooser chooser = new JFileChooser();
+	    int returnVal = chooser.showOpenDialog(null);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	       System.out.println("You chose to open this file: " +
+	            chooser.getSelectedFile().getName());
+	       return chooser.getSelectedFile();
+	    }
+	    return null;
 	}
 }

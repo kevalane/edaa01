@@ -9,7 +9,7 @@ import java.util.Set;
 public class BookReaderApplication {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		// General word counter
+		
 		Scanner scan = new Scanner(new File("undantagsord.txt"));
 		
 		Set<String> stopwords = new HashSet<String>();
@@ -21,7 +21,10 @@ public class BookReaderApplication {
 		
 		GeneralWordCounter r = new GeneralWordCounter(stopwords);
 		
-		Scanner s = new Scanner(new File("nilsholg.txt"));
+		File f = BookReaderController.selectFile();
+		
+//		Scanner s = new Scanner(new File("nilsholg.txt"));
+		Scanner s = new Scanner(f);
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
@@ -33,9 +36,8 @@ public class BookReaderApplication {
 		s.close();
 		
 		r.report();
-		
-		BookReaderController brc = new BookReaderController(r);
 
+		BookReaderController brc = new BookReaderController(r);
 		
 	}
 
