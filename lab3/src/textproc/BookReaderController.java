@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -53,8 +55,13 @@ public class BookReaderController {
 		
 		// creating JPanel
 		JPanel panel1 = new JPanel();
-		JButton btn1 = new JButton("Alphabetic");
-		JButton btn2 = new JButton("Frequency");
+		
+		// fixed selection of radio buttons
+		ButtonGroup bg = new ButtonGroup();
+		JRadioButton btn1 = new JRadioButton("Alphabetic");
+		JRadioButton btn2 = new JRadioButton("Frequency");
+		bg.add(btn1);
+		bg.add(btn2);
 		panel1.add(btn1);
 		panel1.add(btn2);
 		
@@ -94,6 +101,9 @@ public class BookReaderController {
 				JOptionPane.showMessageDialog(frame, "Ordet hittades inte!");
 			}
 		});
+		
+		// fix submit on enter
+		frame.getRootPane().setDefaultButton(btnSearch);
 		
 		frame.pack();
 		frame.setVisible(true);
