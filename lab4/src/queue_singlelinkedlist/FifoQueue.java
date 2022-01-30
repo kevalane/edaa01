@@ -21,7 +21,10 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	public boolean offer(E e) {
 		// empty
 		if (this.last == null) {
-			this.last = new QueueNode<E>(e);
+			QueueNode<E> insert = new QueueNode<E>(e);
+			this.last = insert;
+			this.last.next = insert;
+			this.size++;
 			return true;
 		}
 		// one element
@@ -31,6 +34,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			temp.next = insert;
 			this.last = insert;
 			insert.next = temp;
+			this.size++;
 			return true;
 		}
 		
@@ -42,6 +46,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 				insert.next = this.last.next;
 				temp.next = insert;
 				this.last = insert;
+				this.size++;
 				return true;
 			}
 			temp = temp.next;
@@ -53,16 +58,8 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * Returns the number of elements in this queue
 	 * @return the number of elements in this queue
 	 */
-	public int size() {		
-		if (this.last == null) return 0;
-		if (this.last == this.last.next) return 1;
-		QueueNode<E> temp = this.last.next;
-		int i = 0;
-		do {
-			i++;
-			temp = temp.next;
-		} while(temp != this.last);
-		return i;
+	public int size() {
+		return this.size;
 	}
 	
 	/**	
@@ -72,7 +69,8 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * 			if this queue is empty
 	 */
 	public E peek() {
-		return null;
+		if (this.last == null) return null;
+		return this.last.next.element;
 	}
 
 	/**	
@@ -82,7 +80,18 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return 	the head of this queue, or null if the queue is empty 
 	 */
 	public E poll() {
-		return null;
+		if (this.last == null) return null;
+		if (this.last == this.last.next) {
+			this.size--;
+			QueueNode<E> node = this.last;
+			this.last = null;
+			return node.element;
+		}
+		QueueNode<E> second = this.last.next.next;
+		QueueNode<E> first = this.last.next;
+		this.last.next = second;
+		this.size--;
+		return first.element;
 	}
 	
 	/**	
