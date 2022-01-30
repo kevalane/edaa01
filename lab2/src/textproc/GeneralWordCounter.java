@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.Arrays;
 
 public class GeneralWordCounter implements TextProcessor {
 	
@@ -48,9 +49,14 @@ public class GeneralWordCounter implements TextProcessor {
 		List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
 		wordList.sort((e1, e2) -> e2.getValue() - e1.getValue());
 		wordList.stream().limit(5).forEach(System.out::println);
-		
-//		for (String k : this.m.keySet()) {
-//			if (this.m.get(k) >= 200) System.out.println(k + ": " + this.m.get(k));
-//		}
+	}
+	
+	/**
+	 * Converts map to list of Map.Entry objects
+	 * @return
+	 * 		List of map entry<string, integer> objects
+	 */
+	public List<Map.Entry<String, Integer>> getWordList() {
+		return new ArrayList<Map.Entry<String, Integer>>(this.m.entrySet());
 	}
 }

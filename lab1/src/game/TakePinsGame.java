@@ -6,7 +6,7 @@ public class TakePinsGame {
 		
 		// Game init
 		Board b = new Board();
-		b.setUp(10);
+		b.setUp(9);
 		boolean playerTurn = true;
 		Player p1 = new HumanPlayer("Kevin");
 		Player p2 = new ComputerPlayer2("comp");
