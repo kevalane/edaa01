@@ -32,5 +32,18 @@ public class Side {
 		return this.p2;
 	}
 	
+	@Override
+	public int hashCode() {
+		return p1.hashCode() + p2.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object s) {
+		if (s == this) return true;
+		if (!(s instanceof Side)) return false;
+		Side s2 = (Side) s;
+		if (this.p1 == s2.p1 && this.p2 == s2.p2) return true;
+		return false;
+	}
 	
 }
