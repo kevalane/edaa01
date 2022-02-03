@@ -8,6 +8,12 @@ public class Mountain extends Fractal {
 	private Point y;
 	private Point z;
 	
+	/**
+	 * Constructor for Mountain
+	 * @param x, x coordinate (of type Point) to start from.
+	 * @param y, y coordinate (of type Point) to start from.
+	 * @param z, z coordinate (of type Point) to start from.
+	 */
 	public Mountain(Point x, Point y, Point z) {
 		super();
 		this.title = "Mountain";
@@ -16,19 +22,32 @@ public class Mountain extends Fractal {
 		this.z = z;
 	}
 
+	/**
+	 * Getter of title
+	 */
 	@Override
 	public String getTitle() {
 		return this.title;
 	}
 
+	/**
+	 * Initiates drawing of fractalLines
+	 * @param g TurtleGraphics obj to be used for drawing
+	 */
 	@Override
 	public void draw(TurtleGraphics g) {
-		// TODO Auto-generated method stub
-//		g.moveTo(x.getX(), x.getY());
 		fractalLine(g, order, this.x, this.y, this.z);
 		
 	}
 	
+	/**
+	 * Draws triangles for a given order o
+	 * @param g, turtlegraphics to be used for drawing
+	 * @param order, the order of triangles to be drawn
+	 * @param x Point object, x coordinate to start from
+	 * @param y Point object, y coordinate to start from
+	 * @param z Point object, z coordinate to start from
+	 */
 	private void fractalLine(TurtleGraphics g, int order, Point x, Point y, Point z) {
 		g.moveTo(x.getX(), x.getY());
 		g.penDown();
