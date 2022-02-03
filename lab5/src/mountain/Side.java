@@ -43,6 +43,7 @@ public class Side {
 		if (!(s instanceof Side)) return false;
 		Side s2 = (Side) s;
 		if (this.p1 == s2.p1 && this.p2 == s2.p2) return true;
+		if (this.p1 == s2.p2 && this.p2 == s2.p1) return true;
 		return false;
 	}
 	

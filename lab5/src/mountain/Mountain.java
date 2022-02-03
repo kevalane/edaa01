@@ -63,38 +63,38 @@ public class Mountain extends Fractal {
 			g.forwardTo(x.getX(), x.getY());
 			g.penUp();
 		} else {
-		Point midXY;
-		Point midYZ;
-		Point midXZ;
-		if (!this.sides.containsKey(new Side(x,y))) {
-			midXY = new Point((x.getX() - y.getX())/2 + y.getX(), (y.getY() - x.getY())/2 + x.getY() + (int)RandomUtilities.randFunc(dev/2));
-			this.sides.put(new Side(x,y), midXY);
-		} else {
-			midXY = this.sides.get(new Side(x,y));
-//			this.sides.remove(new Side(x,y));
-		}
-		if (!this.sides.containsKey(new Side(y,z))) {
-			midYZ = new Point((z.getX() - y.getX())/2 + y.getX(), (z.getY() - y.getY())/2 + y.getY() + (int)RandomUtilities.randFunc(dev/2));
-			this.sides.put(new Side(y,z), midYZ);
-		} else {
-			midYZ = this.sides.get(new Side(y,z));
-//			this.sides.remove(new Side(y,z));
-		}
-		if (!this.sides.containsKey(new Side(x,z))) {
-			midXZ = new Point((z.getX() - x.getX())/2+x.getX(), (z.getY() - x.getY())/2 + x.getY() + (int)RandomUtilities.randFunc(dev/2));
-			this.sides.put(new Side(x,z), midXZ);
-		} else {
-			midXZ = this.sides.get(new Side(x,z));
-//			this.sides.remove(new Side(x,z));
-		}
-		
-		if (order > 0) {
-			fractalLine(g, order-1, midXY, midYZ, midXZ);
-			fractalLine(g, order-1, midXY, y, midYZ);
-			fractalLine(g, order-1, midXZ, midYZ, z);
-			fractalLine(g, order-1, x, midXY, midXZ);
+			Point midXY;
+			Point midYZ;
+			Point midXZ;
+			if (!this.sides.containsKey(new Side(x,y))) {
+				midXY = new Point((x.getX() - y.getX())/2 + y.getX(), (y.getY() - x.getY())/2 + x.getY() + (int)RandomUtilities.randFunc(dev/2));
+				this.sides.put(new Side(x,y), midXY);
+			} else {
+				midXY = this.sides.get(new Side(x,y));
+				this.sides.remove(new Side(x,y));
+			}
+			if (!this.sides.containsKey(new Side(y,z))) {
+				midYZ = new Point((z.getX() - y.getX())/2 + y.getX(), (z.getY() - y.getY())/2 + y.getY() + (int)RandomUtilities.randFunc(dev/2));
+				this.sides.put(new Side(y,z), midYZ);
+			} else {
+				midYZ = this.sides.get(new Side(y,z));
+				this.sides.remove(new Side(y,z));
+			}
+			if (!this.sides.containsKey(new Side(x,z))) {
+				midXZ = new Point((z.getX() - x.getX())/2+x.getX(), (z.getY() - x.getY())/2 + x.getY() + (int)RandomUtilities.randFunc(dev/2));
+				this.sides.put(new Side(x,z), midXZ);
+			} else {
+				midXZ = this.sides.get(new Side(x,z));
+				this.sides.remove(new Side(x,z));
+			}
 			
-		}
+			if (order > 0) {
+				fractalLine(g, order-1, midXY, midYZ, midXZ);
+				fractalLine(g, order-1, midXY, y, midYZ);
+				fractalLine(g, order-1, midXZ, midYZ, z);
+				fractalLine(g, order-1, x, midXY, midXZ);
+				
+			}
 		}
 	}
 }
