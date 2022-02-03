@@ -7,6 +7,7 @@ public class Mountain extends Fractal {
 	private Point x;
 	private Point y;
 	private Point z;
+	private double dev;
 	
 	/**
 	 * Constructor for Mountain
@@ -14,12 +15,13 @@ public class Mountain extends Fractal {
 	 * @param y, y coordinate (of type Point) to start from.
 	 * @param z, z coordinate (of type Point) to start from.
 	 */
-	public Mountain(Point x, Point y, Point z) {
+	public Mountain(Point x, Point y, Point z, double dev) {
 		super();
 		this.title = "Mountain";
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.dev = dev;
 	}
 
 	/**
@@ -49,16 +51,18 @@ public class Mountain extends Fractal {
 	 * @param z Point object, z coordinate to start from
 	 */
 	private void fractalLine(TurtleGraphics g, int order, Point x, Point y, Point z) {
-		g.moveTo(x.getX(), x.getY());
-		g.penDown();
-		g.forwardTo(y.getX(), y.getY());
-		g.forwardTo(z.getX(), z.getY());
-		g.forwardTo(x.getX(), x.getY());
-		g.penUp();
+		if (order == 0) {
+			g.moveTo(x.getX(), x.getY());
+			g.penDown();
+			g.forwardTo(y.getX(), y.getY());
+			g.forwardTo(z.getX(), z.getY());
+			g.forwardTo(x.getX(), x.getY());
+			g.penUp();
+		}
 
-		Point midXY = new Point((x.getX() - y.getX())/2 + y.getX(), (y.getY() - x.getY())/2 + x.getY());
-		Point midYZ = new Point((z.getX() - y.getX())/2 + y.getX(), (z.getY() - y.getY())/2 + y.getY());
-		Point midXZ = new Point((z.getX() - x.getX())/2+x.getX(), (z.getY() - x.getY())/2 + x.getY());
+		Point midXY = new Point((x.getX() - y.getX())/2 + y.getX(), (y.getY() - x.getY())/2 + x.getY() + (int)RandomUtilities.randFunc(dev/2));
+		Point midYZ = new Point((z.getX() - y.getX())/2 + y.getX(), (z.getY() - y.getY())/2 + y.getY() + (int)RandomUtilities.randFunc(dev/2));
+		Point midXZ = new Point((z.getX() - x.getX())/2+x.getX(), (z.getY() - x.getY())/2 + x.getY() + (int)RandomUtilities.randFunc(dev/2));
 		if (order > 0) {
 			fractalLine(g, order-1, midXY, midYZ, midXZ);
 			fractalLine(g, order-1, midXY, y, midYZ);
