@@ -4,7 +4,6 @@ public class Side {
 	
 	private Point p1;
 	private Point p2;
-	private Point mid;
 	
 	/**
 	 * Constructor, sets attrbutes for each parameter
@@ -12,10 +11,9 @@ public class Side {
 	 * @param p2, point 2 of this side
 	 * @param mid, midpoint of this side
 	 */
-	public Side(Point p1, Point p2, Point mid) {
+	public Side(Point p1, Point p2) {
 		this.p1 = p1;
 		this.p2 = p2;
-		this.mid = mid;
 	}
 	
 	/**
@@ -32,14 +30,6 @@ public class Side {
 	 */
 	public Point getP2() {
 		return this.p2;
-	}
-	
-	/**
-	 * Getter for mid
-	 * @return mid point
-	 */
-	public Point mid() {
-		return this.mid;
 	}
 	
 	
