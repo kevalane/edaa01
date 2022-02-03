@@ -52,7 +52,7 @@ public class BookReaderController {
 		Container pane = frame.getContentPane();
 		
 		// creating JScrollPane
-		SortedListModel slm = new SortedListModel(counter.getWordList());
+		SortedListModel<Map.Entry<String, Integer>> slm = new SortedListModel<>(counter.getWordList());
 		JList list = new JList(slm);
 		JScrollPane scrollPane = new JScrollPane(list);
 		pane.add(scrollPane, BorderLayout.CENTER);
@@ -71,7 +71,7 @@ public class BookReaderController {
 		
 		// action listener for btn 1
 		btn1.addActionListener(e -> {
-			slm.sort((e1, e2) -> ((Map.Entry<String, Integer>) e1).getKey().compareTo(((Map.Entry<String, Integer>) e2).getKey()));
+			slm.sort((e1, e2) -> e1.getKey().compareTo(e2.getKey()));
 		});
 		
 		// action listener for btn 2
