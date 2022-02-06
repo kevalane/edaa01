@@ -30,9 +30,10 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		boolean returnBool = add(x, this.root);
-		if (returnBool) this.size++;
-		return returnBool;
+		BinaryNode<E> returnNode = add(x, this.root);
+		if (returnNode == null) return false;
+		this.size++;
+		return true;
 	}
 	
 	/**
@@ -41,14 +42,21 @@ public class BinarySearchTree<E> {
 	 * @param n, binary node to search
 	 * @return boolean true if inserted, false if not.
 	 */
-	private boolean add(E x, BinaryNode<E> n) {
+	private BinaryNode<E> add(E x, BinaryNode<E> n) {
 		if (n == null) {
 			n = new BinaryNode<E>(x);
-			return true;
+			return n;
 		}
-		if (n.element.equals(x)) return false;
-		if (this.ccomparator.compare(x, n.element) < 0) return add(x, n.left);
-		return add(x, n.right);
+		if (n.element.equals(x)) return null;
+		if (this.ccomparator.compare(x, n.element) < 0) {
+			BinaryNode<E> returnNode = add(x, n.left);
+			this.root.left = returnNode;
+			return returnNode;
+		} else {
+			BinaryNode<E> returnNode = add(x, n.right);
+			this.root.right = returnNode;
+			return returnNode;
+		}
 	}
 	
 	/**
@@ -56,6 +64,7 @@ public class BinarySearchTree<E> {
 	 * @return the height of the tree
 	 */
 	public int height() {
+		if (this.root == null) return 0;
 		return 1 + height(this.root);
 	}
 	
@@ -73,21 +82,34 @@ public class BinarySearchTree<E> {
 	 * @return the number of elements in this tree
 	 */
 	public int size() {
-		return 0;
+		return this.size;
 	}
 	
 	/**
 	 * Removes all of the elements from this list.
 	 */
 	public void clear() {
-		
+		this.root = null;
+		this.size = 0;
 	}
 	
 	/**
 	 * Print tree contents in inorder.
 	 */
 	public void printTree() {
-
+		printTree(this.root);
+	}
+	
+	/**
+	 * Helper private recursive function for printing in order
+	 * @param n, the root of binary tree to be printed
+	 */
+	private void printTree(BinaryNode<E> n) {
+		if (n == null) return;
+		if (n.left == null && n.right == null) System.out.print(n.element);
+		printTree(n.left);
+		System.out.print(n.element);
+		printTree(n.right);
 	}
 
 	/** 
