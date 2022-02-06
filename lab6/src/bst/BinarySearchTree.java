@@ -30,7 +30,25 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		return false;
+		boolean returnBool = add(x, this.root);
+		if (returnBool) this.size++;
+		return returnBool;
+	}
+	
+	/**
+	 * Private recursive function for adding nodes to BST
+	 * @param x, the element to be added.
+	 * @param n, binary node to search
+	 * @return boolean true if inserted, false if not.
+	 */
+	private boolean add(E x, BinaryNode<E> n) {
+		if (n == null) {
+			n = new BinaryNode<E>(x);
+			return true;
+		}
+		if (n.element.equals(x)) return false;
+		if (this.ccomparator.compare(x, n.element) < 0) return add(x, n.left);
+		return add(x, n.right);
 	}
 	
 	/**
