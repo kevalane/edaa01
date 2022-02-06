@@ -13,14 +13,15 @@ public class BinarySearchTree<E> {
 	 * Constructs an empty binary search tree.
 	 */
 	public BinarySearchTree() {
-		
+		this.root = null;
 	}
 	
 	/**
 	 * Constructs an empty binary search tree, sorted according to the specified comparator.
 	 */
 	public BinarySearchTree(Comparator<E> comparator) {
-		
+		this.root = null;
+		this.ccomparator = comparator;
 	}
 
 	/**
@@ -37,7 +38,16 @@ public class BinarySearchTree<E> {
 	 * @return the height of the tree
 	 */
 	public int height() {
-		return 0;
+		return 1 + height(this.root);
+	}
+	
+	/**
+	 * Private recursive method to calc height of specific node
+	 * @param n, the node from which to count the height
+	 * @return int height
+	 */
+	private int height(BinaryNode<E> n) {
+		return 1 + Math.max(height(n.left), height(n.right));
 	}
 	
 	/**
