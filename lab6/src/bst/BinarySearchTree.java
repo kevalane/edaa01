@@ -33,6 +33,13 @@ public class BinarySearchTree<E extends Comparable> {
     	
     	BSTVisualizer bstv = new BSTVisualizer("Binary Search Tree Visualizer", 600, 600);
     	bstv.drawTree(bst);
+    	// sleep
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	bst.rebuild();
     	bstv.drawTree(bst);
     }
