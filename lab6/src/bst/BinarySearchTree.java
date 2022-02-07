@@ -30,9 +30,7 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		BinaryNode<E> returnNode = add(x, this.root);
-		if (returnNode == null) return false;
-		this.size++;
+		this.root = add(x, this.root);
 		return true;
 	}
 	
@@ -45,18 +43,16 @@ public class BinarySearchTree<E> {
 	private BinaryNode<E> add(E x, BinaryNode<E> n) {
 		if (n == null) {
 			n = new BinaryNode<E>(x);
+			this.size++;
 			return n;
 		}
-		if (n.element.equals(x)) return null;
+		System.out.println(this.ccomparator.compare(x,n.element));
 		if (this.ccomparator.compare(x, n.element) < 0) {
-			BinaryNode<E> returnNode = add(x, n.left);
-			this.root.left = returnNode;
-			return returnNode;
-		} else {
-			BinaryNode<E> returnNode = add(x, n.right);
-			this.root.right = returnNode;
-			return returnNode;
+			n.left = add(x, n.left);
+		} else if (this.ccomparator.compare(x, n.element) > 0) {
+			n.right = add(x, n.right);
 		}
+		return n;
 	}
 	
 	/**
