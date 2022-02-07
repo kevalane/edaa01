@@ -64,6 +64,36 @@ class BinarySearchTreeTest {
 		
 		assertTrue(this.intBst.add(8));
 		assertEquals(8, this.intBst.root.right.left.element);
+		
+		assertFalse(this.intBst.add(8));
 	}
+	
+	@Test
+	void testHeight() {
+		assertEquals(0, this.stringBst.height());
+		assertTrue(this.stringBst.add("hello"));
+		assertEquals(1, this.stringBst.height());
+		assertTrue(this.stringBst.add("abc"));
+		assertEquals(2, this.stringBst.height());
+		assertTrue(this.stringBst.add("mn"));
+		assertEquals(2, this.stringBst.height());
+		assertTrue(this.stringBst.add("adc"));
+		assertEquals(3, this.stringBst.height());
+	}
+	
+	@Test
+	void testSize() {
+		assertEquals(0, this.stringBst.size());
+		assertTrue(this.stringBst.add("hello"));
+		assertEquals(1, this.stringBst.size());
+		assertTrue(this.stringBst.add("abc"));
+		assertEquals(2, this.stringBst.size());
+		assertTrue(this.stringBst.add("mn"));
+		assertEquals(3, this.stringBst.size());
+		assertTrue(this.stringBst.add("adc"));
+		assertEquals(4, this.stringBst.size());
+	}
+	
+	
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 
-public class BinarySearchTree<E> {
+public class BinarySearchTree<E extends Comparable> {
   BinaryNode<E> root;  // Används också i BSTVisaulizer
   int size;            // Används också i BSTVisaulizer
   private Comparator<E> ccomparator;
@@ -12,8 +12,10 @@ public class BinarySearchTree<E> {
 	/**
 	 * Constructs an empty binary search tree.
 	 */
+	@SuppressWarnings("unchecked")
 	public BinarySearchTree() {
 		this.root = null;
+		this.ccomparator = (e1, e2) -> e2.compareTo(e1);
 	}
 	
 	/**
@@ -30,8 +32,9 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
+		int sizeBefore = this.size;
 		this.root = add(x, this.root);
-		return true;
+		return sizeBefore != this.size;
 	}
 	
 	/**
@@ -46,10 +49,9 @@ public class BinarySearchTree<E> {
 			this.size++;
 			return n;
 		}
-		System.out.println(this.ccomparator.compare(x,n.element));
-		if (this.ccomparator.compare(x, n.element) < 0) {
+		if (this.ccomparator.compare(x, n.element) > 0) {
 			n.left = add(x, n.left);
-		} else if (this.ccomparator.compare(x, n.element) > 0) {
+		} else if (this.ccomparator.compare(x, n.element) < 0) {
 			n.right = add(x, n.right);
 		}
 		return n;
@@ -61,7 +63,7 @@ public class BinarySearchTree<E> {
 	 */
 	public int height() {
 		if (this.root == null) return 0;
-		return 1 + height(this.root);
+		return height(this.root);
 	}
 	
 	/**
@@ -70,6 +72,7 @@ public class BinarySearchTree<E> {
 	 * @return int height
 	 */
 	private int height(BinaryNode<E> n) {
+		if (n == null) return 0;
 		return 1 + Math.max(height(n.left), height(n.right));
 	}
 	
@@ -102,7 +105,7 @@ public class BinarySearchTree<E> {
 	 */
 	private void printTree(BinaryNode<E> n) {
 		if (n == null) return;
-		if (n.left == null && n.right == null) System.out.print(n.element);
+		if (n.left == null && n.right == null) System.out.print(n.element + " ");
 		printTree(n.left);
 		System.out.print(n.element);
 		printTree(n.right);
