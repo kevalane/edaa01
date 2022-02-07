@@ -94,4 +94,16 @@ class BinarySearchTreeTest {
 		assertEquals(4, this.stringBst.size());
 	}
 	
+	@Test
+	void testClear() {
+		assertTrue(this.stringBst.add("hello"));
+		assertTrue(this.stringBst.add("abc"));
+		assertTrue(this.stringBst.add("mn"));
+		assertTrue(this.stringBst.add("adc"));
+		
+		this.stringBst.clear();
+		assertEquals(0, this.stringBst.height());
+		assertEquals(0, this.stringBst.size());
+	}
+	
 }
