@@ -5,9 +5,27 @@ import java.util.Comparator;
 
 
 public class BinarySearchTree<E extends Comparable> {
-  BinaryNode<E> root;  // Används också i BSTVisaulizer
-  int size;            // Används också i BSTVisaulizer
-  private Comparator<E> ccomparator;
+    BinaryNode<E> root;  // Används också i BSTVisaulizer
+    int size;            // Används också i BSTVisaulizer
+    private Comparator<E> ccomparator;
+    
+    public static void main(String[] args) {
+    	BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+    	for (int i = 10; i < 20; i = i+2) {
+    		bst.add(i);
+    	}
+    	bst.add(5);
+    	bst.add(15);
+    	bst.add(3);
+    	bst.add(25);
+    	bst.add(45);
+    	bst.add(13);
+    	bst.add(1);
+    	bst.add(2);
+    	
+    	BSTVisualizer bstv = new BSTVisualizer("Binary Search Tree Visualizer", 600, 600);
+    	bstv.drawTree(bst);
+    }
     
 	/**
 	 * Constructs an empty binary search tree.

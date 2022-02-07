@@ -94,6 +94,4 @@ class BinarySearchTreeTest {
 		assertEquals(4, this.stringBst.size());
 	}
 	
-	
-
 }
