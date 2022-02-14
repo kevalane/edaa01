@@ -35,7 +35,7 @@ public class BinarySearchTree<E extends Comparable> {
     	bstv.drawTree(bst);
     	// sleep
     	try {
-			Thread.sleep(2000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,7 +185,7 @@ public class BinarySearchTree<E extends Comparable> {
 		return node;
 	}
 
-	static class BinaryNode<E> {
+	private static class BinaryNode<E> {
 		E element;
 		BinaryNode<E> left;
 		BinaryNode<E> right;
