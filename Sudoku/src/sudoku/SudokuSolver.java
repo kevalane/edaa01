@@ -4,7 +4,7 @@ public interface SudokuSolver {
 	/**
 	 * To be done
 	 */
-//	boolean solve();
+	boolean solve();
 
 	/**
 	 * Puts digit in the box row, col.
@@ -37,8 +37,9 @@ public interface SudokuSolver {
 
 	/**
 	 * Checks that all filled in digits follows the the sudoku rules.
+	 * @return boolean true if valid, false if not valid
 	 */
-//	boolean isValid();
+	boolean isValid();
 
 	/**
 	 * Clears the board by setting all numbers to 0
