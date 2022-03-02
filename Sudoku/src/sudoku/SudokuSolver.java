@@ -4,7 +4,7 @@ public interface SudokuSolver {
 	/**
 	 * To be done
 	 */
-	boolean solve();
+//	boolean solve();
 
 	/**
 	 * Puts digit in the box row, col.
@@ -15,27 +15,27 @@ public interface SudokuSolver {
 	 * @throws IllegalArgumentException if row, col or digit is outside the range
 	 *                                  [0..9]
 	 */
-	void add(int row, int col, int digit);
+//	void add(int row, int col, int digit);
 
 	/**
 	 * To be done
 	 */
-	void remove(int row, int col);
+//	void remove(int row, int col);
 
 	/**
 	 * To be done
 	 */
-	int get(int row, int col);
+//	int get(int row, int col);
 
 	/**
 	 * Checks that all filled in digits follows the the sudoku rules.
 	 */
-	boolean isValid();
+//	boolean isValid();
 
 	/**
 	 * To be done
 	 */
-	void clear();
+//	void clear();
 
 	/**
 	 * Fills the grid with the digits in m. The digit 0 represents an empty box.
@@ -47,7 +47,8 @@ public interface SudokuSolver {
 	void setMatrix(int[][] m);
 
 	/**
-	 * To be done
+	 * Returns the board as a matrix filled with ints 0-9 where 0 indicates empty.
+	 * @return an int[][] representation of the sudoku board.
 	 */
 	int[][] getMatrix();
 }
