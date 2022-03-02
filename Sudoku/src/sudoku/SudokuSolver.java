@@ -18,9 +18,12 @@ public interface SudokuSolver {
 	void add(int row, int col, int digit);
 
 	/**
-	 * To be done
+	 * Removes (by setting digit to 0) a specified row and col on board.
+	 * @param row, the specified row index to remove
+	 * @param col, the specified column index to remove
+	 * @throws IllegalArgumentException if row or col is outside 0-8
 	 */
-//	void remove(int row, int col);
+	void remove(int row, int col);
 
 	/**
 	 * Returns the number at specified row and col

@@ -22,12 +22,30 @@ class SudokuSpec {
 	
 	@Test
 	void testConstructor() {
-//		assertArrayEquals()
+		int[][] empty = {{0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0},
+						 {0,0,0,0,0,0,0,0,0}};
+		assertArrayEquals(this.s.getMatrix(), empty);
 	}
 	
 	@Test
 	void testRemove() {
+		// test invalid rows and cols
+		assertThrows(IllegalArgumentException.class, () -> this.s.get(-1,5));
+		assertThrows(IllegalArgumentException.class, () -> this.s.get(20,5));
+		assertThrows(IllegalArgumentException.class, () -> this.s.get(4,-100));
+		assertThrows(IllegalArgumentException.class, () -> this.s.get(5,40));
 		
+		this.s.add(4,6,7);
+		assertEquals(this.s.get(4,6), 7);
+		this.s.remove(4,6);
+		assertEquals(this.s.get(4,6), 0);
 	}
 	
 	@Test
