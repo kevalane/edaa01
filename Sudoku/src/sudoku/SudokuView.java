@@ -54,7 +54,6 @@ public class SudokuView {
 		pane.add(panel2, BorderLayout.PAGE_START);
 		frame.getRootPane().setDefaultButton(solveButton);
 		frame.pack();
-//		frame.setSize(300,300);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		

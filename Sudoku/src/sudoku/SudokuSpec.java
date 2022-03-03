@@ -35,6 +35,51 @@ class SudokuSpec {
 	}
 	
 	@Test
+	void testSolve() {
+		// test empty
+		assertTrue(this.s.solve());
+		this.s.clear();
+		
+		// test one with illegal start
+		this.s.add(0,0,1);
+		this.s.add(1,0,1);
+		assertFalse(this.s.solve());
+		this.s.clear();
+		
+		// test one with illegal start in end
+		this.s.add(8,8,1);
+		this.s.add(8,7,1);
+		assertFalse(this.s.solve());
+		this.s.clear();
+		
+		// test one solveable, numbers set in end
+		this.s.add(8,8,1);
+		assertTrue(this.s.solve());
+		
+		// test one with many numbers, not solveable
+		this.s.add(0,0,1);
+		this.s.add(0,1,2);
+		this.s.add(0,2,3);
+		this.s.add(1,0,4);
+		this.s.add(1,1,5);
+		this.s.add(1,2,6);
+		this.s.add(2,3,7);
+		assertFalse(this.s.solve());
+		this.s.clear();
+		
+		// test one with many numbers, solveable
+		this.s.add(0,0,1);
+		this.s.add(0,1,2);
+		this.s.add(0,2,3);
+		this.s.add(1,0,4);
+		this.s.add(1,1,5);
+		this.s.add(1,2,6);
+		assertTrue(this.s.solve());
+		this.s.clear();
+		
+	}
+	
+	@Test
 	void testIsValid() {
 		// test empty board
 		int[][] empty = {{0,0,0,0,0,0,0,0,0},
