@@ -8,7 +8,7 @@ import java.util.List;
 public class BinarySearchTree<E extends Comparable> {
     BinaryNode<E> root;  // Används också i BSTVisaulizer
     int size;            // Används också i BSTVisaulizer
-    private Comparator<E> ccomparator;
+    Comparator<E> ccomparator;
     
     public static void main(String[] args) {
     	BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
@@ -35,7 +35,7 @@ public class BinarySearchTree<E extends Comparable> {
     	bstv.drawTree(bst);
     	// sleep
     	try {
-			Thread.sleep(2000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,7 +173,7 @@ public class BinarySearchTree<E extends Comparable> {
 	 * Elements in the list a are assumed to be in ascending order.
 	 * Returns the root of tree.
 	 */
-	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
+	BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
 		if (first > last) return null;
 		int mid = first + ((last - first)/2);
 		BinaryNode<E> node = new BinaryNode<E>(sorted.get(mid));
