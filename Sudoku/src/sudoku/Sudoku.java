@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 public class Sudoku implements SudokuSolver {
 	
 	public static final int SIZE = 9;
-	private static final int BOX_SIZE = SIZE/3;
+	public static final int BOX_SIZE = SIZE/3;
 	private int[][] board;
 	
 	public Sudoku() {

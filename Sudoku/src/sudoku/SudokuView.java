@@ -15,27 +15,31 @@ import javax.swing.JOptionPane;
 
 public class SudokuView {
 	private static final Color BACKGROUND_COLOR = new Color(255,0,0,50);
+	SudokuSolver s;
+	JFrame frame;
+	Container pane;
+	JTextField[][] textField;
 	
-	public static void main(String[] args) {
-		
-		SudokuSolver s = new Sudoku();
-		
-		
-		JFrame frame = new JFrame("Sudoku");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container pane = frame.getContentPane();
-		
-		JPanel panel1 = new JPanel();
-		JButton clearButton = new JButton("Clear");
-		JButton solveButton = new JButton("Solve");
-		panel1.add(clearButton);
-		panel1.add(solveButton);
-		
-		pane.add(panel1, BorderLayout.PAGE_END);
-		
+	public SudokuView() {
+		this.s = new Sudoku();
+		this.frame = new JFrame("Sudoku Solver");
+		this.pane = frame.getContentPane();
+		this.textField = new JTextField[Sudoku.SIZE][Sudoku.SIZE];
+		this.initGui();
+	}
+	
+	private void initGui() {
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addButtons();
+		this.addBoard();
+		this.frame.pack();
+		this.frame.setResizable(false);
+		this.frame.setVisible(true);
+	}
+	
+	private void addBoard() {
 		JPanel panel2 = new JPanel();
-		JTextField textField[][] = new JTextField[9][9];
-		panel2.setLayout(new GridLayout(9,9));
+		panel2.setLayout(new GridLayout(Sudoku.SIZE,Sudoku.SIZE));
 		
 		for (int i = 0; i < 9; i++){
 			for (int k = 0; k < 9; k++){
@@ -52,11 +56,18 @@ public class SudokuView {
 		
 		panel2.setBorder(new EmptyBorder(50,50,50,50));
 		
-		pane.add(panel2, BorderLayout.PAGE_START);
-		frame.getRootPane().setDefaultButton(solveButton);
-		frame.pack();
-		frame.setResizable(false);
-		frame.setVisible(true);
+		this.pane.add(panel2, BorderLayout.PAGE_START);
+	}
+	
+	private void addButtons() {
+		JPanel panel1 = new JPanel();
+		JButton clearButton = new JButton("Clear");
+		JButton solveButton = new JButton("Solve");
+		panel1.add(clearButton);
+		panel1.add(solveButton);
+		
+		this.pane.add(panel1, BorderLayout.PAGE_END);
+		this.frame.getRootPane().setDefaultButton(solveButton);
 		
 		// action listener for btn 1
 		clearButton.addActionListener(e -> {
