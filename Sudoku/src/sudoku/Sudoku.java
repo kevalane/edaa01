@@ -1,6 +1,5 @@
 package sudoku;
 
-import java.awt.TextField;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -83,10 +82,10 @@ public class Sudoku implements SudokuSolver {
 	}
 	
 	/**
-	 * 
-	 * @param r
-	 * @param c
-	 * @return
+	 * Recursive helper algorithm for checking if sudoku is solvable.
+	 * @param r, the row index to be tested
+	 * @param c, the col index to be tested
+	 * @return true if solvable, false if not
 	 */
 	private boolean solve(int r, int c) {
 		if (r == 9) return true;

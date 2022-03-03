@@ -67,7 +67,7 @@ public interface SudokuSolver {
 	/**
 	 * Adds the numbers in textfield to the sudokuboard-matrix.
 	 * @param tf the textfield matrix where user input is taken.
-	 * @throws IllegalArgumentException if values in textfields are not 0-9
+	 * @throws IllegalArgumentException if values in textfields are not 0-9 and if dimension of tf is wrong
 	 */
 	void addUserInput(JTextField[][] tf);
 }
