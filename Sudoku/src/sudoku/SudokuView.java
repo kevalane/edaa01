@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 public class SudokuView {
 	private static final Color BACKGROUND_COLOR = new Color(255,0,0,50);
+	
 	public static void main(String[] args) {
 		
 		SudokuSolver s = new Sudoku();

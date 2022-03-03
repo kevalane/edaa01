@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 public class Sudoku implements SudokuSolver {
 	
 	public static final int SIZE = 9;
-	private static final int BOX_SIZE = 3;
+	private static final int BOX_SIZE = SIZE/3;
 	private int[][] board;
 	
 	public Sudoku() {
@@ -70,7 +70,7 @@ public class Sudoku implements SudokuSolver {
 					} catch (Exception e) {
 						throw new IllegalArgumentException("Textfield contains a non-integer!");
 					}
-					if (z < 0 || z > 9) throw new IllegalArgumentException("Only numbers between 0-9 are allowed.");
+					if (z < 0 || z > SIZE) throw new IllegalArgumentException("Only numbers between 0-9 are allowed.");
 					this.add(i,j,z);
 				}				
 			}
@@ -95,7 +95,7 @@ public class Sudoku implements SudokuSolver {
 				this.add(r,c,i);
 				
 				if (isValid()) {
-					if (c != 8) {
+					if (c != SIZE - 1) {
 						if (solve(r, c+1)) return true;
 					} else {
 						if (solve(r+1, 0)) return true;
@@ -106,7 +106,7 @@ public class Sudoku implements SudokuSolver {
 			return false;
 		} else {
 			if (this.isValid()) {
-				if (c != 8) {
+				if (c != SIZE - 1) {
 					if (solve(r, c+1)) return true;
 				} else {
 					if (solve(r+1, 0)) return true;
