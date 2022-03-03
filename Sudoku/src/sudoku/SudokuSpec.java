@@ -1,6 +1,8 @@
 package sudoku;
 import static org.junit.jupiter.api.Assertions.*;
 
+import javax.swing.JTextField;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,6 +79,41 @@ class SudokuSpec {
 		assertTrue(this.s.solve());
 		this.s.clear();
 		
+	}
+	
+	@Test 
+	void testAddUserInput() {
+		// test input string
+		JTextField[][] tf = new JTextField[Sudoku.SIZE][Sudoku.SIZE];
+		for (int i = 0; i < 9; i++){
+			for (int k = 0; k < 9; k++){
+				tf[i][k] = new JTextField();
+			}
+		}
+		tf[4][4].setText("a");
+		assertThrows(IllegalArgumentException.class, () -> this.s.addUserInput(tf));
+		this.s.clear();
+		
+		// test input of too large number
+		tf[4][4].setText("");
+		tf[2][5].setText("10");
+		assertThrows(IllegalArgumentException.class, () -> this.s.addUserInput(tf));
+		this.s.clear();
+		
+		// test wrong dimensions
+		JTextField[][] tf2 = new JTextField[1][1];
+		tf2[0][0] = new JTextField();
+		assertThrows(IllegalArgumentException.class, () -> this.s.addUserInput(tf2));
+		this.s.clear();
+		
+		// test valid input
+		tf[2][5].setText("");
+		tf[1][1].setText("1");
+		tf[1][5].setText("2");
+		this.s.addUserInput(tf);
+		assertEquals(this.s.get(2,5), 0);
+		assertEquals(this.s.get(1,1), 1);
+		assertEquals(this.s.get(1,5), 2);
 	}
 	
 	@Test

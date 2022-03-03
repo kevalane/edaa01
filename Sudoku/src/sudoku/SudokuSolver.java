@@ -1,5 +1,7 @@
 package sudoku;
 
+import javax.swing.JTextField;
+
 public interface SudokuSolver {
 	/**
 	 * Solves the board
@@ -61,4 +63,11 @@ public interface SudokuSolver {
 	 * @return an int[][] representation of the sudoku board.
 	 */
 	int[][] getMatrix();
+	
+	/**
+	 * Adds the numbers in textfield to the sudokuboard-matrix.
+	 * @param tf the textfield matrix where user input is taken.
+	 * @throws IllegalArgumentException if values in textfields are not 0-9
+	 */
+	void addUserInput(JTextField[][] tf);
 }

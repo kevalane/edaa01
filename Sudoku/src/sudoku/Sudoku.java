@@ -58,16 +58,22 @@ public class Sudoku implements SudokuSolver {
 		return this.board[row][col];
 	}
 	
-	public void addUserInput(JTextField tf[][]) {
+	public void addUserInput(JTextField[][] tf) throws IllegalArgumentException {
+		if (tf.length != SIZE || tf[0].length != SIZE) throw new IllegalArgumentException("Wrong dimensions on input textfield!");
 		for (int i = 0; i < SIZE; i++) {
 			for (int j = 0; j < SIZE; j++) {
 				if (tf[i][j].getText().equals("")) {
 					this.add(i,j,0);
 				} else {
-					int z = Integer.parseInt(tf[i][j].getText());
+					int z;
+					try {
+						z = Integer.parseInt(tf[i][j].getText());
+					} catch (Exception e) {
+						throw new IllegalArgumentException("Textfield contains a non-integer!");
+					}
+					if (z < 0 || z > 9) throw new IllegalArgumentException("Only numbers between 0-9 are allowed.");
 					this.add(i,j,z);
-
-				}
+				}				
 			}
 		}
 	}

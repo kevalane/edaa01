@@ -17,7 +17,7 @@ public class SudokuView {
 	private static final Color BACKGROUND_COLOR = new Color(255,0,0,50);
 	public static void main(String[] args) {
 		
-		Sudoku s = new Sudoku();
+		SudokuSolver s = new Sudoku();
 		
 		
 		JFrame frame = new JFrame("Sudoku");
@@ -69,14 +69,18 @@ public class SudokuView {
 		
 		// action listener for btn 2
 		solveButton.addActionListener(e -> {
-			s.addUserInput(textField);
-			boolean solveable = s.solve();
-			if (!solveable) JOptionPane.showMessageDialog(null,"Sudoku gick ej att lösa.");  
-			for (int i = 0; i < Sudoku.SIZE; i++) {
-				for (int k = 0; k < Sudoku.SIZE; k++) {
-					if (s.get(i,k) == 0) return;
-					textField[i][k].setText(String.valueOf(s.get(i,k)));
+			try {
+				s.addUserInput(textField);
+				boolean solveable = s.solve();
+				if (!solveable) JOptionPane.showMessageDialog(null,"Sudoku gick ej att lösa.");  
+				for (int i = 0; i < Sudoku.SIZE; i++) {
+					for (int k = 0; k < Sudoku.SIZE; k++) {
+						if (s.get(i,k) == 0) return;
+						textField[i][k].setText(String.valueOf(s.get(i,k)));
+					}
 				}
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, ex.getMessage());
 			}
 		});
 	}
