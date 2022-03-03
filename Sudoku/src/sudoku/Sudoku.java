@@ -1,10 +1,13 @@
 package sudoku;
 
+import java.awt.TextField;
 import java.util.ArrayList;
+
+import javax.swing.JTextField;
 
 public class Sudoku implements SudokuSolver {
 	
-	private static final int SIZE = 9;
+	public static final int SIZE = 9;
 	private static final int BOX_SIZE = 3;
 	private int[][] board;
 	
@@ -55,6 +58,20 @@ public class Sudoku implements SudokuSolver {
 		return this.board[row][col];
 	}
 	
+	public void addUserInput(JTextField tf[][]) {
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				if (tf[i][j].getText().equals("")) {
+					this.add(i,j,0);
+				} else {
+					int z = Integer.parseInt(tf[i][j].getText());
+					this.add(i,j,z);
+
+				}
+			}
+		}
+	}
+	
 	public boolean solve() { 
 		return solve(0,0);
 	}
@@ -66,19 +83,32 @@ public class Sudoku implements SudokuSolver {
 	 * @return
 	 */
 	private boolean solve(int r, int c) {
-		if (this.board[r][c] != 0) {
-			if (!this.isValid()) return false;
-			if (c == 8 && r != 7) return solve(r+1, 0);
-			return solve(r, c+1);
-		}
-		for (int i = 1; i <= SIZE; i++) {
-			this.add(r,c,i);
+		if (r == 9) return true;
+		
+		if (this.get(r,c) == 0) {
+			for (int i = 1; i <= SIZE; i++) {
+				this.add(r,c,i);
+				
+				if (isValid()) {
+					if (c != 8) {
+						if (solve(r, c+1)) return true;
+					} else {
+						if (solve(r+1, 0)) return true;
+					}
+				}
+			}
+			this.remove(r,c);
+			return false;
+		} else {
 			if (this.isValid()) {
-				if (c == 8 && r != 7) return solve(r+1, 0);
-				return solve(r, c+1);
+				if (c != 8) {
+					if (solve(r, c+1)) return true;
+				} else {
+					if (solve(r+1, 0)) return true;
+				}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	public boolean isValid() {

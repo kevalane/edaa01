@@ -11,10 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import javax.swing.JOptionPane;
 
 public class SudokuView {
 	private static final Color BACKGROUND_COLOR = new Color(255,0,0,50);
 	public static void main(String[] args) {
+		
+		Sudoku s = new Sudoku();
+		
+		
 		JFrame frame = new JFrame("Sudoku");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container pane = frame.getContentPane();
@@ -24,16 +29,6 @@ public class SudokuView {
 		JButton solveButton = new JButton("Solve");
 		panel1.add(clearButton);
 		panel1.add(solveButton);
-		
-		// action listener for btn 1
-		clearButton.addActionListener(e -> {
-//			slm.sort((e1, e2) -> e1.getKey().compareTo(e2.getKey()));
-		});
-		
-		// action listener for btn 2
-		solveButton.addActionListener(e -> {
-//			slm.sort((e1, e2) -> ((Map.Entry<String, Integer>) e2).getValue() - ((Map.Entry<String, Integer>) e1).getValue());
-		});
 		
 		pane.add(panel1, BorderLayout.PAGE_END);
 		
@@ -57,9 +52,33 @@ public class SudokuView {
 		panel2.setBorder(new EmptyBorder(50,50,50,50));
 		
 		pane.add(panel2, BorderLayout.PAGE_START);
+		frame.getRootPane().setDefaultButton(solveButton);
 		frame.pack();
 //		frame.setSize(300,300);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
+		// action listener for btn 1
+		clearButton.addActionListener(e -> {
+			s.clear();
+			for (int i = 0; i < Sudoku.SIZE; i++) {
+				for (int k = 0; k < Sudoku.SIZE; k++) {
+					textField[i][k].setText("");
+				}
+			}
+		});
+		
+		// action listener for btn 2
+		solveButton.addActionListener(e -> {
+			s.addUserInput(textField);
+			boolean solveable = s.solve();
+			if (!solveable) JOptionPane.showMessageDialog(null,"Sudoku gick ej att lösa.");  
+			for (int i = 0; i < Sudoku.SIZE; i++) {
+				for (int k = 0; k < Sudoku.SIZE; k++) {
+					if (s.get(i,k) == 0) return;
+					textField[i][k].setText(String.valueOf(s.get(i,k)));
+				}
+			}
+		});
 	}
 }
