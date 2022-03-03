@@ -59,16 +59,22 @@ public class Sudoku implements SudokuSolver {
 		return solve(0,0);
 	}
 	
+	/**
+	 * 
+	 * @param r
+	 * @param c
+	 * @return
+	 */
 	private boolean solve(int r, int c) {
 		if (this.board[r][c] != 0) {
 			if (!this.isValid()) return false;
-			if (c == 8) return solve(r+1, 0);
+			if (c == 8 && r != 7) return solve(r+1, 0);
 			return solve(r, c+1);
 		}
 		for (int i = 1; i <= SIZE; i++) {
 			this.add(r,c,i);
 			if (this.isValid()) {
-				if (c == 8) return solve(r+1, 0);
+				if (c == 8 && r != 7) return solve(r+1, 0);
 				return solve(r, c+1);
 			}
 		}
