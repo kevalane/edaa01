@@ -2,7 +2,8 @@ package sudoku;
 
 public interface SudokuSolver {
 	/**
-	 * To be done
+	 * Solves the board
+	 * @return boolean true if solveable, false if not
 	 */
 	boolean solve();
 

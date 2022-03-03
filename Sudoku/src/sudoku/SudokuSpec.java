@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class SudokuSpec {
 	
-	private Sudoku s;
+	private SudokuSolver s;
 
 	@BeforeEach
 	void setUp() throws Exception {
