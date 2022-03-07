@@ -1,14 +1,21 @@
-(F1) a) 10 20 30 47
+## Prep
+
+### F1
+a) 10 20 30 47
 b) 3
 c) 4
 
-(F2) if (empty) 0
+### F2
+if (empty) 0
 height = 1 + max{calcHeight(leftNode), calcHeight(rightNode)}
 Math.max()
 
-(F3) int mid = first + ((last - first) / 2);
+### F3
+int mid = first + ((last - first) / 2);
 
-(D8) 
+## Discussion
+
+### D8
 1.if we want to use private attributes for recursive, e.g. private root attr.
 
 2. having parameters the user can't access / don't have
