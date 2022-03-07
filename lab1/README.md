@@ -1,5 +1,7 @@
-f2. a) Player is a superclass to the subclasses HumanPlayer and ComputerPlayer.
+## Prep
 
+### f2
+a) Player is a superclass to the subclasses HumanPlayer and ComputerPlayer.
 b) These:
 Player p = new HumanPlayer("aragor");
 works bc superclass as type, is allowed. Think shape and square
@@ -11,7 +13,9 @@ Other two:
 1st: No, bc player is abstract. Cant be initialized
 4th: No, type mismatch.
 
-D5
+## Discussion
+
+### D5
 1. We avoid dupclitative code, using super() for constructor, and only
 storing userid in the superclass.
 

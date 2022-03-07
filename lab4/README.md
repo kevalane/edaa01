@@ -1,11 +1,20 @@
-(F2) last = null if q is empty
+## Prep
+
+### F2
+
+last = null if q is empty
 QueueNode<E> n = this.first;
 E e = this.first.element;
 
-(F3) assertFalse
+### F3
+
+assertFalse
 assertArrayEquals
 
-(D7)
+## Discussion
+
+### D7
+
 a. No, because ArrayList does not inherit from Queue.
 Meaning, we don't get offer etc.
 We could probably implement the methods ourselves, but it would
