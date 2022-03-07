@@ -1,4 +1,7 @@
-(F1)
+## Prep
+
+### F1
+
 Scheduler.java -> machineWithLeastToDo (line 19),
 called from makeSchedule() line 34, in main 21
 The error stems from the constructor, where attribute
@@ -10,7 +13,8 @@ Scheduler.java, line 51
 method: printSchedule()
 reason: <= in for loop
 
-(F2)
+### F2
+
 4. Well, you can see that they are sorted in ascending order.
 Error probably with lambda expression, will investigate.
 Yup, j2.getTime() - j1. instead of other way around solved it.
@@ -22,13 +26,15 @@ we still only see the total time of the most recently assigned job.
 Yeah, read instructions again. Changed void assignJob() to
 this.scheduledTime += j.getTime();
 
-(F3)
+### F3
+
 Using a priority queue allows us to access min at O(1) time complexity.
 If we use a priority deque, double ended queue, we can also access
 the maximum element in O(1), however not necessary in this case
 (thus far).
 
-(F4)
+### F4
+
 a) 20 rows
 Yes, we can be sure
 
@@ -45,16 +51,19 @@ Map<String, Integer> m = new HashMap<String, Integer>();
 
 d) boolean containsKey(Object key);
 
-(D12)
+## Discussions
+
+### D12
 688 608 684 -> median 684ms
 
-(D13)
+### D13
 644 735 723 -> median 723ms
 Higher!
 Treemap ensures order, hashmap doesnt
 Program still working
 
-(D14)
+### D14
+
 Map is the interface both TreeMap and HashMap implements
 I cannot instantiate a Map as an object (it's not a class)
 HashMap implements Map, meaning it has it's own or inherits the
@@ -81,4 +90,3 @@ Out parameters, e1 e2, have their type inferred, and the compiler understands
 we are calling the compare method since no other method exists on the interface.
 Using lambda expression to create an object only works if only one abstract
 method exists, called a functional interface, which Comparable is an example of.
-
